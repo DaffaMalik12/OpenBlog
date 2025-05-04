@@ -55,17 +55,9 @@
                     </div>
                 </div>
             @endforeach
-
-
         </div>
-
-        {{-- Pagination --}}
-        <div class="flex justify-center mt-8 space-x-1">
-            @for ($i = 1; $i <= 6; $i++)
-                <a href="#" class="px-3 py-1 border border-gray-300 text-sm text-gray-700 hover:bg-gray-200 rounded">
-                    {{ $i }}
-                </a>
-            @endfor
+        <div class="mt-6">
+            {{ $terbaru->links() }}
         </div>
     </div>
 @endsection
