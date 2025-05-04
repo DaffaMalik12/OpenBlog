@@ -26,7 +26,7 @@ class LoginController extends Controller
         // Coba login
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // hindari session fixation
-            return redirect()->intended('/dashboard'); // ubah ke route tujuanmu
+            return redirect()->intended('/index'); // ubah ke route tujuanmu
         }
 
         // Kalau gagal
