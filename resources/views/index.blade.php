@@ -21,34 +21,32 @@
         {{-- Blog Cards Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($terbaru as $item)
-                <div class="bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition duration-200 mb-5">
-                    <div class="flex justify-between items-center mb-3">
-                        <!-- Tanggal Publikasi -->
-                        <span class="text-xs text-gray-400">
-                            @if (!empty($item['pubDate']))
-                                {{ \Carbon\Carbon::parse($item['pubDate'])->diffForHumans() }}
-                            @else
-                                <p>Invalid date format or missing date</p>
-                            @endif
-                        </span>
-                    </div>
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 max-w-md mx-auto">
+                    <!-- Thumbnail -->
+                    <img src="{{ $item['thumbnail'] }}" alt="Article Image" class="w-full h-48 object-cover">
 
-                    <!-- Judul Artikel -->
-                    <h2 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
-                        {{ $item['title'] }}
-                    </h2>
-
-                    <!-- Deskripsi Artikel -->
-                    <p class="text-sm text-gray-600 mb-4 line-clamp-3">
-                        {{ $item['description'] }}
-                    </p>
-
-                    <!-- Thumbnail dan Link ke Artikel -->
-                    <div class="flex justify-between items-center mt-auto">
-                        <div class="flex items-center space-x-2">
-                            <!-- Thumbnail Gambar Artikel -->
-                            <img src="{{ $item['thumbnail'] }}" alt="Thumbnail" class="w-16 h-16 rounded-lg object-cover">
+                    <!-- Content -->
+                    <div class="p-5">
+                        <!-- PubDate & Category -->
+                        <div class="flex items-center text-sm text-gray-500 space-x-2 mb-2">
+                            <span>
+                                @if (!empty($item['pubDate']))
+                                    {{ \Carbon\Carbon::parse($item['pubDate'])->format('M d, Y') }}
+                                @endif
+                            </span>
                         </div>
+
+                        <!-- Title -->
+                        <h2 class="text-lg font-semibold text-gray-900 mb-2 hover:underline line-clamp-2">
+                            {{ $item['title'] }}
+                        </h2>
+
+                        <!-- Description -->
+                        <p class="text-sm text-gray-600 line-clamp-3">
+                            {{ $item['description'] }}
+                        </p>
+
                         <!-- Link untuk Baca Selengkapnya -->
                         <a href="{{ $item['link'] }}" target="_blank"
                             class="text-sm text-blue-600 font-semibold hover:underline">
@@ -57,6 +55,7 @@
                     </div>
                 </div>
             @endforeach
+
 
         </div>
 
