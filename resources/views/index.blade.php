@@ -4,19 +4,23 @@
 
 @section('content')
     <div class="max-w-7xl mx-auto px-4 py-10">
-        <h1 class="text-3xl font-bold mb-8">Blog</h1>
+        <h1 class="text-3xl font-bold mb-3">Baca berita terbaru di OpenBlog!</h1>
+        <p class="mb-6 text-lg/8 text-gray-600">OpenBlog merupakan web portal berita terbaru seputar politik, ekonomi,
+            internasional, olahraga, teknologi, hiburan, gaya hidup.
+        </p>
 
         {{-- Search Bar --}}
-        <div class="flex items-center mb-6">
-            <input type="text" placeholder="Search for article"
-                class="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <button class="px-5 py-2 bg-blue-600 text-white font-semibold rounded-r-md hover:bg-blue-700">
+        <div class="flex items-center mb-6" {{-- action=" route('blog.search') " method="GET" --}}>
+            <input type="text" placeholder="Search for article" {{-- name="s" --}}
+                class="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                {{-- value=" request('s') " --}}>
+            <button type="submit" class="px-5 py-2 bg-blue-600 text-white font-semibold rounded-r-md hover:bg-blue-700">
                 Search
             </button>
         </div>
 
         {{-- Pagination Summary --}}
-        <p class="text-sm text-gray-500 mb-4">Showing {{ count($blog) }} results</p>
+        <p class="text-sm text-gray-500 mb-4">Showing {{ count($blog) + 6 }} results</p>
 
         {{-- Blog Cards Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -56,6 +60,7 @@
                 </div>
             @endforeach
         </div>
+
         <div class="mt-6">
             {{ $terbaru->links() }}
         </div>

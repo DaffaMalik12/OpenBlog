@@ -17,11 +17,6 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('indextest');
-// });
-
-
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
@@ -33,4 +28,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/index', [BlogController::class, 'index'])->name('blog.index');
 
-// Route::get('/index', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{encodedLink}', [BlogController::class, 'blog'])->name('blog');
+
+// Route::get('/search', [BlogController::class, 'search'])->name('blog.search');
